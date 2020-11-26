@@ -27,20 +27,25 @@ public class ThirdRatings {
 		
 		//make private later
 		public double getAverageByID(String id, int minimalRaters) {
+			
 			//List with all Ratings objects from ArrayList
 			List<HashMap<String, Rating>> allRatings = myRaters.stream()
 					.map(Rater::getMyRatings)
 					.collect(Collectors.toList());
 			
+			
 			//get all Rating objects for particular movie
 			List<Rating> matches = new ArrayList<Rating>();
 			for(HashMap<String, Rating> each:allRatings) {
+				
 				//loop through each Hash map and get rating of key equal to id
+				if(each.containsKey(id)) {
 				matches.add(each.get(id));
+				}
 			}
 			
 			
-		
+		 	
 			if(matches.size() >= minimalRaters) {
 			
 			//get all scores for particular movie
@@ -54,6 +59,7 @@ public class ThirdRatings {
 			
 			//average for this movie
 			return sum/allScores.size();
+			
 			
 			}
 			
@@ -78,19 +84,34 @@ public class ThirdRatings {
 				}
 			}
 			
-			System.out.println("List after the use of" + movieRatings);
-			//Print movie ratings
-			//sort them
-			 Collections.sort(movieRatings, (o1,  o2) -> o1.compareTo(o2));
-			 for(Rating each:movieRatings) {
-				 //ratings + title
-			 System.out.println(each.getValue() + " " + getTitle(each.getItem()));
-			 }
-			 
-			 
+	
+			
 			return movieRatings;
 			
 		}
+		
+		public ArrayList<Rating> getAverageRatingsByFilter(int minimalRaters, Filter filterCriteria){
+			ArrayList<Rating> movieRatingsY = new ArrayList<Rating>();
+			ArrayList<String> myMovies = MovieDatabase.filterBy(filterCriteria); //YearsAfterFilter filter
+			
+			//ArrayList with Movie IDs as strings
+			for(String each:myMovies) {
+				
+				String movieID = each;
+				Double movieAverage = getAverageByID(movieID, minimalRaters);
+				
+				if(movieAverage > 0.0) {
+				movieRatingsY.add(new Rating(movieID, movieAverage));
+				}
+			}
+			
+	
+			
+			return movieRatingsY;
+		
+		}
+		
+		
 		
 		
 }
