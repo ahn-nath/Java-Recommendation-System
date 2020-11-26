@@ -13,7 +13,7 @@ public class MinutesFilter implements Filter {
 	@Override
 	public boolean satisfies(String id) {
 		
-		return MovieDatabase.getMinutes(id) <= minStart &&   MovieDatabase.getMinutes(id) >= minEnd;
+		return MovieDatabase.getMinutes(id) >= minStart &&   MovieDatabase.getMinutes(id) <= minEnd;
 	}
 
 }

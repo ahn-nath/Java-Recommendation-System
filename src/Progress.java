@@ -25,7 +25,7 @@ public class Progress {
 	    
 		
 		//runner2.printAverageRatings(35);
-		runner2.printAverageRatingsYear(20, 2000);
+		//runner2.printAverageRatingsYear(20, 2000);
 		//runner2.printAverageRatingsGenre("Crime");
 		//runner2.printAverageRatingsMinutes(110,170);
 		//runner2.printAverageRatingsDirectors("Charles Chaplin,Michael Mann,Spike Jonze");

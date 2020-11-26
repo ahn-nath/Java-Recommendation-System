@@ -56,7 +56,7 @@ public class MovieRunnerWithFilters {
 	
 	
 	
-	void printAverageRatingsGenre(String genre) {
+	void printAverageRatingsGenre(int minimalRatings, String genre) {
 		ArrayList<Rating> movieRatings;	
 	
 			//print size for raters and movies
@@ -65,7 +65,7 @@ public class MovieRunnerWithFilters {
 			
 			//print ratings for each movie with minimal ratings and with year filter
 			Filter filter = new GenreFilter(genre);
-			movieRatings = object.getAverageRatingsByFilter(1, filter);
+			movieRatings = object.getAverageRatingsByFilter(minimalRatings, filter);
 			//System.out.println(movieRatings);
 			
 			
@@ -83,7 +83,7 @@ public class MovieRunnerWithFilters {
 	}
 	
 	
-	void printAverageRatingsMinutes(int start, int end) {
+	void printAverageRatingsMinutes(int minimalRatings, int start, int end) {
 		ArrayList<Rating> movieRatings;	
 	
 			//print size for raters and movies
@@ -92,7 +92,7 @@ public class MovieRunnerWithFilters {
 			
 			//print ratings for each movie with minimal ratings and with year filter
 			Filter filter = new MinutesFilter(start, end);
-			movieRatings = object.getAverageRatingsByFilter(1, filter);
+			movieRatings = object.getAverageRatingsByFilter(minimalRatings, filter);
 			//System.out.println(movieRatings);
 			
 			
@@ -109,7 +109,7 @@ public class MovieRunnerWithFilters {
 	}
 	
 	
-	void printAverageRatingsDirectors(String directors) {
+	void printAverageRatingsDirectors(int minimalRatings, String directors) {
 		ArrayList<Rating> movieRatings;	
 	
 			//print size for raters and movies
@@ -118,7 +118,7 @@ public class MovieRunnerWithFilters {
 			
 			//print ratings for each movie with minimal ratings and with year filter
 			Filter filter = new DirectorsFilter(directors);
-			movieRatings = object.getAverageRatingsByFilter(1, filter);
+			movieRatings = object.getAverageRatingsByFilter(minimalRatings, filter);
 			//System.out.println(movieRatings);
 			
 			
@@ -135,7 +135,7 @@ public class MovieRunnerWithFilters {
 		
 	}
 	
-	void printAverageRatingsByYearAfterAndGenre(int year, String genre) {
+	void printAverageRatingsByYearAfterAndGenre(int minimalRatings, int year, String genre) {
 		ArrayList<Rating> movieRatings;	
 	
 			//print size for raters and movies
@@ -150,7 +150,7 @@ public class MovieRunnerWithFilters {
 			filters.addFilter(filter1);
 			filters.addFilter(filter2);
 			
-			movieRatings = object.getAverageRatingsByFilter(1, filters);
+			movieRatings = object.getAverageRatingsByFilter(minimalRatings, filters);
 			//System.out.println(movieRatings);
 			
 			
@@ -168,7 +168,7 @@ public class MovieRunnerWithFilters {
 	}
 	
 	
-	void printAverageRatingsByDirectorsAndMinutes(int start, int end, String directors) {
+	void printAverageRatingsByDirectorsAndMinutes(int minimalRatings, int start, int end, String directors) {
 		ArrayList<Rating> movieRatings;	
 	
 			//print size for raters and movies
@@ -183,7 +183,7 @@ public class MovieRunnerWithFilters {
 			filters.addFilter(filter1);
 			filters.addFilter(filter2);
 			
-			movieRatings = object.getAverageRatingsByFilter(1, filters);
+			movieRatings = object.getAverageRatingsByFilter(minimalRatings, filters);
 			//System.out.println(movieRatings);
 			
 			
