@@ -10,7 +10,9 @@ public class Progress {
 		
 		FirstRatings check = new FirstRatings();
 		ThirdRatings check3 = new ThirdRatings(csvFile_rate);
+		FourthRatings check4 = new FourthRatings();
 		MovieRunnerWithFilters runner2 = new MovieRunnerWithFilters();
+		MovieRunnerSimilarRatings runner3 = new MovieRunnerSimilarRatings();
 		
 		
 		 
@@ -31,6 +33,10 @@ public class Progress {
 		//runner2.printAverageRatingsDirectors("Charles Chaplin,Michael Mann,Spike Jonze");
 		//runner2.printAverageRatingsByYearAfterAndGenre( 1980,"Romance");
 		//runner2.printAverageRatingsByDirectorsAndMinutes( 30, 170,"Spike Jonze,Michael Mann,Charles Chaplin,Francis Ford Coppola");
+		//runner3.printAverageRatingsByYearAfterAndGenre(1, 1980,"Romance");
+		//runner3.printAverageRatings(35);
+		
+		
 		
 	
 		

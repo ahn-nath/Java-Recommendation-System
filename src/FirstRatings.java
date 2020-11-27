@@ -213,6 +213,48 @@ public class FirstRatings {
 
 	
 	
+	
+	//ArrayList for raters
+		public ArrayList<ArrayList<String>> loadRatersDatabase(String filename) {
+			ArrayList<ArrayList<String>> ratersList = new ArrayList<ArrayList<String>>();
+
+			//process
+			BufferedReader reader = null;
+			String line = "";
+
+			try {
+				reader = new BufferedReader(new FileReader(filename));
+				//skip headers of the file
+				reader.readLine(); 
+				Rater rater;
+
+				
+				while ((line = reader.readLine()) != null) {
+					
+					ArrayList<String> record = new ArrayList<String>();
+					String[] tokens = line.split(","); //split string by semicolon/comma
+
+					//read and validate the data
+					int item = Integer.parseInt(tokens[1]); //eliminate leading zeros
+				
+					record.add(tokens[0]); //Rater id
+					record.add(String.valueOf(item)); //Movie id (item rated)
+					record.add(tokens[2]); //Rating given
+					
+					ratersList.add(record);		
+						
+					}				
+			}
+
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			return ratersList;
+		}
+
+	
+	
 	//MOVIES
 	
 	//2. Determine how many movies include the Comedy genre

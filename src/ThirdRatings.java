@@ -26,7 +26,7 @@ public class ThirdRatings {
 		}
 		
 		//make private later
-		public double getAverageByID(String id, int minimalRaters) {
+		private double getAverageByID(String id, int minimalRaters) {
 			
 			//List with all Ratings objects from ArrayList
 			List<HashMap<String, Rating>> allRatings = myRaters.stream()
