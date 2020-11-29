@@ -80,7 +80,8 @@ public class FourthRatings {
 			int numSimilarRaters) {
 
 		ArrayList<Rating> topRaters = new ArrayList<Rating>();
-		for (int i=0; i<numSimilarRaters; i++) {
+		int endIndex = (listRaters.size() >= numSimilarRaters) ? numSimilarRaters: listRaters.size();
+		for (int i=0; i < endIndex; i++) {
 		    topRaters.add(new Rating(listRaters.get(i).getItem(), listRaters.get(i).getValue()));
 		    
 		 

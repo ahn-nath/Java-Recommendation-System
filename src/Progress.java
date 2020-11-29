@@ -13,6 +13,7 @@ public class Progress {
 		FourthRatings check4 = new FourthRatings();
 		MovieRunnerWithFilters runner2 = new MovieRunnerWithFilters();
 		MovieRunnerSimilarRatings runner3 = new MovieRunnerSimilarRatings();
+		Recommender recommender = new RecommendationRunner(); 
 		
 		
 		 
@@ -36,14 +37,19 @@ public class Progress {
 		
 		
 		
-		//runner3.printAverageRatingsByYearAfterAndGenre(1, 1980,"Romance");
+		//runner3.printAverageRatingsByYearAfterAndGenre(1, 2015,"Thriller");
 		//runner3.printAverageRatings(35);
+
 		
 		//runner3.printSimilarRatings();
 		//runner3.printSimilarRatingsbyGenre();
 		//runner3.printSimilarRatingsbyDirector();
 		//runner3.printSimilarRatingsbyByGenreAndMinutes();
-		runner3.printSimilarRatingsbyByYearAfterAndMinutes(); 
+		//runner3.printSimilarRatingsbyByYearAfterAndMinutes(); 
+		
+		
+		//final step
+		recommender.printRecommendationsFor("2");
 		
 		
 		
