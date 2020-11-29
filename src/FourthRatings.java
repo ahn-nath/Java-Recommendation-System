@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class FourthRatings {
 	private ArrayList<Rater> myRaters = RaterDatabase.getRaters();
 	
-	
+	//Similar Ratings
 	private int dotProduct(Rater me, Rater r) {
 		int product = 0;
 	
@@ -33,6 +33,11 @@ public class FourthRatings {
 		Rater me = RaterDatabase.getRater(id);
 		
 		for (Rater rater:myRaters) {
+			//if rater and me are the same objects, don't compare them/calculate dotProduct
+			if(rater.equals(me)) {
+				continue;
+			}
+			
 			int product = dotProduct(me, rater);
 			if(product > 0) {
 				ratingsSimilar.add(new Rating(rater.getID(), product));
@@ -44,11 +49,15 @@ public class FourthRatings {
 	}
 	
 	
-	
-	
 	public ArrayList<Rating> getSimilarRatings(String id, int numSimilarRaters, int minimalRaters) {
+		//returns similar Ratings (no filters)
+		return getSimilarRatingsByFilter(id, numSimilarRaters, minimalRaters, new TrueFilter());
+	}
+	
+	
+	public ArrayList<Rating> getSimilarRatingsByFilter(String id, int numSimilarRaters, int minimalRaters, Filter filter) {
 		ArrayList<Rating> movieRatings = new ArrayList<Rating>();
-		ArrayList<String> myMovies = MovieDatabase.filterBy(new TrueFilter());
+		ArrayList<String> myMovies = MovieDatabase.filterBy(filter);
 		
 		
 		//get all Raters with dot product (similarity score)
@@ -56,11 +65,76 @@ public class FourthRatings {
 
 		for(String movieID: myMovies) {
 			double movieAverage = getAverageByIDTop(movieID, minimalRaters, raters, numSimilarRaters);
+			//add if result is greater than 0
+			if(movieAverage > 0) {
 			movieRatings.add(new Rating(movieID, movieAverage));
 		}
 		
+		}
+		
+		
 		return movieRatings;
 	}
+	
+	private double getAverageByIDTop(String movieId, int minimalRaters, ArrayList<Rating> listRaters,
+			int numSimilarRaters) {
+
+		ArrayList<Rating> topRaters = new ArrayList<Rating>();
+		for (int i=0; i<numSimilarRaters; i++) {
+		    topRaters.add(new Rating(listRaters.get(i).getItem(), listRaters.get(i).getValue()));
+		    
+		 
+		}
+		
+		// get all Rating objects for particular movie
+		HashMap<Double, Double> matches = new HashMap<Double, Double>();
+		
+		int i = 0;
+		for (Rating each: topRaters) {
+			//get Rater id
+			
+			i++; //rater num
+			
+			Rater rater = RaterDatabase.getRater(each.getItem());
+			HashMap<String, Rating> raterMovieRatings = rater.getMyRatings();
+			
+			// if Rater rated that movie (id), get rating given and add it to matches with
+			// weighted rating for Rater
+			if(raterMovieRatings.containsKey(movieId)) {
+				// get rating Rater gave to a particular movie from list of Ratings
+				Double ratingGivenMovie = raterMovieRatings.get(movieId).getValue();
+				Double ratingWeight = each.getValue();
+
+				//store rating weight and rating value
+				matches.put(ratingWeight, ratingGivenMovie);
+				
+				
+			}
+
+		}
+
+		double sum = 0;
+		if (matches.size() >= minimalRaters) {
+
+			for (Double weight : matches.keySet()) {
+			
+				Double rating = matches.get(weight);
+				//multiply rating per its value and add it to sum
+				sum += (weight * rating);
+			}
+
+			//average for this movie (sum / total ratings)
+			return sum / matches.size();
+
+		}
+
+		return 0.0;
+
+	}
+	
+	
+	
+	
 	
 	
 	
@@ -125,43 +199,7 @@ public class FourthRatings {
 	
 	
 	
-	private double getAverageByIDTop(String movieId, int minimalRaters, ArrayList<Rating> topRaters,
-			int numSimilarRaters) {
-
-		// get all Rating objects for particular movie
-		HashMap<Double, Double> matches = new HashMap<Double, Double>();
-		for (int i = 0; i < numSimilarRaters; i++) {
-			Rater rater = RaterDatabase.getRater(topRaters.get(i).getItem());
-
-			// if Rater rated that movie (id), get rating given and add it to matches with
-			// weighted rating for Rater
-			if (rater.getMyRatings().containsKey(movieId)) {
-				// get rating Rater gave to a particular movie from list of Ratings
-				Double ratingGivenMovie = rater.getMyRatings().get(movieId).getValue();
-				Double ratingWeight = topRaters.get(i).getValue();
-
-				//store rating weight and rating value
-				matches.put(ratingWeight, ratingGivenMovie);
-			}
-		}
-
-		double sum = 0;
-		if (matches.size() >= minimalRaters) {
-
-			for (Double weight : matches.keySet()) {
-				Double rating = matches.get(weight);
-				//multiply rating per its value and add it to sum
-				sum += (weight * rating);
-			}
-
-			//average for this movie (sum / total ratings)
-			return sum / matches.size();
-
-		}
-
-		return 0.0;
-
-	}
+	
 	
 	
 	public ArrayList<Rating> getAverageRatings(int minimalRaters){

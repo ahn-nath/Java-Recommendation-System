@@ -33,8 +33,17 @@ public class Progress {
 		//runner2.printAverageRatingsDirectors("Charles Chaplin,Michael Mann,Spike Jonze");
 		//runner2.printAverageRatingsByYearAfterAndGenre( 1980,"Romance");
 		//runner2.printAverageRatingsByDirectorsAndMinutes( 30, 170,"Spike Jonze,Michael Mann,Charles Chaplin,Francis Ford Coppola");
+		
+		
+		
 		//runner3.printAverageRatingsByYearAfterAndGenre(1, 1980,"Romance");
 		//runner3.printAverageRatings(35);
+		
+		//runner3.printSimilarRatings();
+		//runner3.printSimilarRatingsbyGenre();
+		//runner3.printSimilarRatingsbyDirector();
+		//runner3.printSimilarRatingsbyByGenreAndMinutes();
+		runner3.printSimilarRatingsbyByYearAfterAndMinutes(); 
 		
 		
 		
