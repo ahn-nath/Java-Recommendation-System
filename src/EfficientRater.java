@@ -35,7 +35,7 @@ public class EfficientRater implements Rater{
 
 
 	public double getRating(String item) {
-        for(int k=0; k < myRatings.size(); k++){
+        for( String k : myRatings.keySet()){
             if (myRatings.get(k).getItem().equals(item)){
                 return myRatings.get(k).getValue();
             }
