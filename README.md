@@ -19,7 +19,7 @@ Given input files on users ratings and movie titles, you will be able to:
 The system uses a number of tools to work properly:
 
 - [Java][java] - a class-based, object-oriented programming languag.
-- CSV files with data about [user ratings](/blob/main/data/ratings.csv) and [rated movies](/blob/main/data/ratedmoviesfull.csv).
+- CSV files with data about [user ratings](/data/ratings.csv) and [rated movies](/data/ratedmoviesfull.csv).
 
 ## Adittional 
 
