@@ -37,5 +37,5 @@ If you would like to know more about the project and its functionalities:
 
    [Java]: <https://www.java.com/>
 
-   [youtube-demo]: <https://www.youtube.com/watch?v=T3vbLMzoNRU>
+   [youtube-demo]: <https://www.youtube.com/watch?v=nv8laUUS8MY>
    [course]: <https://www.coursera.org/learn/java-programming-recommender>
